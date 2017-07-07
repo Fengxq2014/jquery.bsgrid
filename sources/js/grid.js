@@ -560,7 +560,16 @@
                 return data[row];
             },
             getColumnValue: function (record, index) {
-                return record[index];
+                var key = record;
+                var propty = index.split('.')
+                if (index.split('.').length > 1) {
+                    for (var i = 0; i < index.split('.').length; i++) {
+                        key = key[propty[i]];
+                    }
+                } else {
+                    return $.trim(record[index]);
+                }
+                return $.trim(key);
             }
         },
 
